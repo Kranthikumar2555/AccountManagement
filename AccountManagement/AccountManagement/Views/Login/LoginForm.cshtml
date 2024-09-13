@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="form-container">
+    <h2 class="text-center">@Model.Role Login</h2>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <form asp-action="Login" method="post" id="loginForm">
+        <div class="form-group">
+            <label for="UserName" class="form-label">UserName</label>
+            <input asp-for="UserName" id="UserName" name="UserName" class="form-control" type="text" autocomplete="username" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password" class="form-label">Password</label>
+            <input asp-for="Password" id="Password" name="Password" class="form-control" type="password" autocomplete="current-password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group form-check d-flex align-items-center">
+            <input asp-for="RememberMe" id="RememberMe" name="RememberMe" type="checkbox" class="form-check-input" />
+            <label for="RememberMe" class="form-check-label">Remember me</label>
+            
+        </div>
+        <div class="form-group" style="margin-left: 157px!important">
+   <a href="#" id="forgotPasswordLink" class="ml-2" >Forgot Password?</a>
+   </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <br />
+        <div class="text-center">
+            <h6>
+                <a href="@Url.Action("Index", "Login")" class="text-decoration-none">Home</a>
+            </h6>
+        </div>
+    </form>
+</div>
+
+@section scripts {
+        <script>
+        $(document).ready(function() {
+            $("#loginForm").validate({
+                rules: {
+                    UserName: {
+                        required: true,
+                        minlength: 3
+                    },
+                    Password: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    UserName: {
+                        required: "Please enter your username",
+                        minlength: "Your username must consist of at least 3 characters"
+                    },
+                    Password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 6 characters long"
+                    }
+                },
+                errorElement: "span",
+                errorClass: "text-danger",
+                validClass: "is-valid",
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass(errorClass).removeClass(validClass);
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass(errorClass).addClass(validClass);
+                },
+                submitHandler: function(form) {
+                    if ($("#UserName").val().trim() === "") {
+                        alert("Please enter your username before proceeding.");
+                    } else {
+                        form.submit();
+                    }
+                }
+            });
+
+            $("#forgotPasswordLink").click(function(e) {
+                e.preventDefault();
+                if ($("#UserName").val().trim() === "") {
+                    alert("Please enter your username to proceed.");
+                } else {
+                    // Redirect to the forgot password page
+                        window.location.href = "@Url.Action("FirstTimeLoginRedirect", "Login")?Employeeid=0&userName=" + encodeURIComponent($("#UserName").val().trim());
+                }
+            });
+        });
+        </script>
+}

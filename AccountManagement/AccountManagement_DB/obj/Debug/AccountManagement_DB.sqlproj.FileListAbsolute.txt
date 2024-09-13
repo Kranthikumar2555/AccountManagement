@@ -1,0 +1,6 @@
+C:\Users\vijay\source\repos\AccountManagement\AccountManagement_DB\bin\Debug\AccountManagement_DB.dacpac
+C:\Users\vijay\source\repos\AccountManagement\AccountManagement_DB\bin\Debug\AccountManagement_DB.dll
+C:\Users\vijay\source\repos\AccountManagement\AccountManagement_DB\bin\Debug\AccountManagement_DB.pdb
+C:\Users\vijay\source\repos\AccountManagement\AccountManagement_DB\obj\Debug\AccountManagement_DB.sqlproj.AssemblyReference.cache
+C:\Users\vijay\source\repos\AccountManagement\AccountManagement_DB\obj\Debug\AccountManagement_DB.dll
+C:\Users\vijay\source\repos\AccountManagement\AccountManagement_DB\obj\Debug\AccountManagement_DB.pdb

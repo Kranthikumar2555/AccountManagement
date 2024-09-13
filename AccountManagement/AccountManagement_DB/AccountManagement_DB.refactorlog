@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="982e2167-f8d8-405d-bf36-505ecf68aab6" ChangeDateTime="09/12/2024 17:03:19">
+    <Property Name="ElementName" Value="[dbo].[Roles].[RoleId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Roles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="609f130d-0a20-4c8d-8ba2-55b967025827" ChangeDateTime="09/12/2024 17:03:33">
+    <Property Name="ElementName" Value="[dbo].[Roles].[RoleName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Roles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aabcfd35-4c60-464a-a1d6-85c58faa6e58" ChangeDateTime="09/12/2024 17:04:12">
+    <Property Name="ElementName" Value="[dbo].[Roles].[Normalized]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Roles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="NormalizedName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e221cdfc-214c-4eee-ab8c-ac7d8403bbe4" ChangeDateTime="09/12/2024 17:04:36">
+    <Property Name="ElementName" Value="[dbo].[Roles].[Concurrency]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Roles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ConcurrencyStamp" />
+  </Operation>
+</Operations>
