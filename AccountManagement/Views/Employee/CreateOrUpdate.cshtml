@@ -1,0 +1,151 @@
+﻿@model AccountManagement.Models.EmployeeViewModel
+
+@{
+    var isEditing = ViewData["IsEditing"] != null && (bool)ViewData["IsEditing"];
+    var actionText = isEditing ? "Update Employee Details" : "Add New Employee";
+    var formAction = "/Employee/SaveEmployee";
+    ViewData["Role"] = ViewData["IsAdmin"] != null && Convert.ToBoolean(ViewData["IsAdmin"]) ? "Admin" : "Employee";
+    var redirectUrl = ViewData["Role"].ToString() == "Admin"
+        ? Url.Action("AdminDashboard", "Admin")
+        : Url.Action("EmployeeDashboard", "Employee", new { employeeId = Model.EmployeeId });
+}
+
+@{
+    ViewData["Title"] = actionText;
+    Layout = "_Layout";
+}
+
+<div class="form-container">
+    <div class="form-header">
+                <h4>
+            <a href="@redirectUrl" class="text-decoration-none">Back</a>
+        </h4>
+        <h1>@actionText</h1> 
+
+    </div>
+    <form id="employeeForm" novalidate>
+        <div class="form-group">
+            <label for="EmployeeId" class="form-label">Employee ID</label>
+            <input id="EmployeeId" name="EmployeeId" class="form-control" value="@Model.EmployeeId" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="Name" class="form-label">Name</label>
+            <input id="Name" name="Name" class="form-control" value="@Model.Name" required />
+            <span id="NameError" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Department" class="form-label">Department</label>
+            <input id="Department" name="Department" class="form-control" value="@Model.Department" required />
+            <span id="DepartmentError" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="JobTitle" class="form-label">Job Title</label>
+            <input id="JobTitle" name="JobTitle" class="form-control" value="@Model.JobTitle" required />
+            <span id="JobTitleError" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Salary" class="form-label">Salary</label>
+            <input id="Salary" name="Salary" type="number" class="form-control" min="1" value="@Model.Salary" required />
+            <span id="SalaryError" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="RemoteWorkStatus" class="form-label">Remote Work Status</label>
+            <select id="RemoteWorkStatus" name="RemoteWorkStatus" class="form-select" required>
+                <option value="">Select</option>
+                <option value="Yes" @(Model.RemoteWorkStatus == "Yes" ? "selected" : "")>Yes</option>
+                <option value="No" @(Model.RemoteWorkStatus == "No" ? "selected" : "")>No</option>
+            </select>
+            <span id="RemoteWorkStatusError" class="text-danger"></span>
+        </div>
+
+        <br/>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">
+                @(isEditing ? "Update" : "Save")
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#employeeForm').on('submit', function (event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            $('.text-danger').text('');
+
+            const name = $('#Name').val().trim();
+            const department = $('#Department').val().trim();
+            const jobTitle = $('#JobTitle').val().trim();
+            const salary = $('#Salary').val();
+            const remoteWorkStatus = $('#RemoteWorkStatus').val();
+
+            if (!name) {
+                $('#NameError').text('Please enter employee name');
+                isValid = false;
+            }
+            if (!department) {
+                $('#DepartmentError').text('Please enter department');
+                isValid = false;
+            }
+            if (!jobTitle) {
+                $('#JobTitleError').text('Please enter job title');
+                isValid = false;
+            }
+            if (!salary || salary < 1) {
+                $('#SalaryError').text('Salary must be a positive number');
+                isValid = false;
+            }
+            if (!remoteWorkStatus) {
+                $('#RemoteWorkStatusError').text('Please select remote work status');
+                isValid = false;
+            }
+
+            if (isValid) {
+                const formData = {
+                    EmployeeId: $('#EmployeeId').val(),
+                    Name: name,
+                    Department: department,
+                    JobTitle: jobTitle,
+                    Salary: salary,
+                    RemoteWorkStatus: remoteWorkStatus
+                };
+
+                $.ajax({
+                    url: '@formAction',
+                    type: 'POST',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    processData: false,
+                    success: function (data) {
+                        if (data.success) {
+                            alert('Employee saved successfully!');
+                            const isAdmin = '@ViewData["Role"].ToString()';
+                            if (isAdmin =="Admin") {
+                                window.location.href = '@Url.Action("AdminDashboard", "Admin")';
+                            } else {
+                                window.location.href = '@Url.Action("EmployeeDashboard", "Employee", new { employeeId = Model.EmployeeId })';
+                            }
+                        } else {
+                            alert('Error saving employee: ' + data.message);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error('Error:', textStatus, errorThrown);
+                        alert('An error occurred while saving employee.');
+                    }
+                });
+            }
+        });
+    });
+</script>
