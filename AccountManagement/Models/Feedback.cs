@@ -13,7 +13,7 @@ namespace CourseManagement.Models
 
         [Required(ErrorMessage = "Email Address is required.")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [StringLength(150, ErrorMessage = "Email address cannot be longer than 150 characters.")]
+        [StringLength(512, ErrorMessage = "Email address cannot be longer than 150 characters.")]
         public string? EmailAddress { get; set; }
 
         [Required(ErrorMessage = "Feedback Type is required.")]

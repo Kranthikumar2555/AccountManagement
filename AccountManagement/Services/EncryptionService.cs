@@ -2,7 +2,7 @@
 
 namespace CourseManagement.Services
 {
-    public class EncryptionService
+    public class EncryptionService: IEncryptionService
     {
         private readonly IDataProtector _protector;
 
@@ -13,14 +13,22 @@ namespace CourseManagement.Services
         }
 
         // Encrypt Email
-        public string EncryptEmail(string email)
+        public string? EncryptEmail(string? email)
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                return null;  // Return null if the email is null or empty
+            }
             return _protector.Protect(email);
         }
 
         // Decrypt Email
-        public string DecryptEmail(string encryptedEmail)
+        public string? DecryptEmail(string? encryptedEmail)
         {
+            if (string.IsNullOrEmpty(encryptedEmail))
+            {
+                return null;  // Return null if the email is null or empty
+            }
             return _protector.Unprotect(encryptedEmail);
         }
     }
