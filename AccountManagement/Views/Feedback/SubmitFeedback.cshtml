@@ -1,0 +1,66 @@
+﻿@model CourseManagement.Models.Feedback
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewData["Title"] = "Submit Feedback";
+}
+
+<h2>Submit Feedback</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-danger">
+        @Html.Raw(TempData["Message"])
+    </div>
+}
+
+<form asp-action="SubmitFeedback" method="post" class="shadow p-4 rounded bg-white">
+    @Html.AntiForgeryToken()
+    <input asp-for="FeedbackId" class="form-control" type="hidden" value="0" />
+    <div class="form-group mb-3">
+        <label asp-for="CustomerName" class="form-label fw-bold">Full Name</label>
+        <input asp-for="CustomerName" class="form-control" placeholder="Enter your full name" />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="EmailAddress" class="form-label fw-bold">Email Address</label>
+        <input asp-for="EmailAddress" class="form-control" placeholder="Enter your email address" />
+        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="FeedbackType" class="form-label fw-bold">Feedback Type</label>
+        <input asp-for="FeedbackType" class="form-control" placeholder="Enter feedback type (e.g., Bug, Suggestion)" />
+        <span asp-validation-for="FeedbackType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="FeedbackMessage" class="form-label fw-bold">Your Feedback</label>
+        <textarea asp-for="FeedbackMessage" class="form-control" rows="5" placeholder="Enter your feedback"></textarea>
+        <span asp-validation-for="FeedbackMessage" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <label asp-for="AppVersion" class="form-label fw-bold">App Version</label>
+        <input asp-for="AppVersion" class="form-control" placeholder="Enter app version (e.g., 1.0.0)" />
+        <span asp-validation-for="AppVersion" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-5">
+        <label asp-for="IsIntegrateWithGitHub" class="form-label fw-bold">Integrate With GitHub</label>
+        <input asp-for="IsIntegrateWithGitHub" class="form-check-input custom-checkbox" type="checkbox" />
+    </div>
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg">Submit Feedback</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
