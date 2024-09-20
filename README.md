@@ -1,8 +1,8 @@
-# Project Name
+# Feedback Management System
 
 ## Overview
 
-**Project Name** is an ASP.NET Core MVC application that allows users to submit feedback for a mobile app. The feedback is stored securely in a SQL Server database, with the email address encrypted for privacy. The project also integrates with external bug tracking systems like GitHub Issues to create bug reports from user feedback.
+**Feedback Management System** is an ASP.NET Core MVC application that allows users to submit feedback for a mobile app. The feedback is stored securely in a SQL Server database, with the email address encrypted for privacy. The project also integrates with external bug tracking systems like GitHub Issues to create bug reports from user feedback.
 
 ## Features
 
