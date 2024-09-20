@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseManagement.Models
 {
@@ -28,5 +29,8 @@ namespace CourseManagement.Models
         [StringLength(20, ErrorMessage = "App version cannot be longer than 20 characters.")]
         [RegularExpression(@"^\d+(\.\d+){2}$", ErrorMessage = "App version must be in the format x.x.x (e.g., 1.0.0)")]
         public string? AppVersion { get; set; }
+
+        [NotMapped]
+        public bool IsIntegrateWithGitHub { get; set; }
     }
 }

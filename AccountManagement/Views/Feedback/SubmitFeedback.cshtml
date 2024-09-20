@@ -11,7 +11,7 @@
 
 @if (TempData["Message"] != null)
 {
-    <div class="alert alert-success">
+    <div class="alert alert-danger">
         @Html.Raw(TempData["Message"])
     </div>
 }
@@ -47,6 +47,11 @@
         <label asp-for="AppVersion" class="form-label fw-bold">App Version</label>
         <input asp-for="AppVersion" class="form-control" placeholder="Enter app version (e.g., 1.0.0)" />
         <span asp-validation-for="AppVersion" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-5">
+        <label asp-for="IsIntegrateWithGitHub" class="form-label fw-bold">Integrate With GitHub</label>
+        <input asp-for="IsIntegrateWithGitHub" class="form-check-input custom-checkbox" type="checkbox" />
     </div>
 
     <div class="d-grid">
