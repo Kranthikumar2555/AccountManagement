@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    @* Set dynamic page title based on ViewData["Title"] *@
+    <title>@ViewData["Title"] - Course Management</title>
+
+    @* Load Bootstrap CSS (Grid, Reboot, Utilities, Main) *@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" /> @* Custom site-specific styles *@
+
+    @* Load site-wide JavaScript before closing head (if required immediately) *@
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <header>
+        @* Navbar section *@
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="@Url.Action("SubmitFeedback", "Feedback")">Feedback</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("SubmitFeedback", "Feedback")">Submit Feedback</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        @* Main content section where individual views will be rendered *@
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @(DateTime.Now.Year) - Feedback - All Rights Reserved
+        </div>
+    </footer>
+
+    @* Load Bootstrap JavaScript libraries *@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @* Additional scripts that are defined in views, if any *@
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

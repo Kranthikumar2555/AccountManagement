@@ -1,22 +1,50 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 0; /* Ensures the checkbox remains square */
+    cursor: pointer;
+    appearance: none; /* Removes the default checkbox appearance */
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+    background-color: white;
+    border: 2px solid #007bff; /* Border color (Bootstrap primary color) */
+    position: relative;
+}
+
+.custom-checkbox:checked {
+    background-color: #007bff; /* Checked background color */
+}
+
+.custom-checkbox:checked::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    position: absolute;
+    top: 4px;
+    left: 4px;
 }
