@@ -38,8 +38,8 @@ Before you can run this project, ensure that you have the following installed:
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/your-username/your-repo.git
-    cd your-repo
+    git clone https://github.com/rakeshmr-message/AccountManagement.git
+    cd AccountManagement
     ```
 
 2. **Install Dependencies**:
