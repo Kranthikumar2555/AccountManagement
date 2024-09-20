@@ -40,6 +40,7 @@ Before you can run this project, ensure that you have the following installed:
     ```bash
     git clone https://github.com/rakeshmr-message/AccountManagement.git
     cd AccountManagement
+    cd AccountManagement
     ```
 
 2. **Install Dependencies**:
